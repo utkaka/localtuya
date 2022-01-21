@@ -242,16 +242,7 @@ class LocaltuyaClimate(LocalTuyaEntity, ClimateEntity):
                     self._target_temperature - self._precision
                 ):
                     self._hvac_action = CURRENT_HVAC_HEAT
-                if self._current_temperature == (
-                    self._target_temperature - self._precision
-                ):
-                    if self._hvac_action == CURRENT_HVAC_HEAT:
-                        self._hvac_action = CURRENT_HVAC_HEAT
-                    if self._hvac_action == CURRENT_HVAC_IDLE:
-                        self._hvac_action = CURRENT_HVAC_IDLE
-                if (
-                    self._current_temperature + self._precision
-                ) > self._target_temperature:
+                else:
                     self._hvac_action = CURRENT_HVAC_IDLE
             return self._hvac_action
         return self._hvac_action
